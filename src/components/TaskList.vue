@@ -1,5 +1,12 @@
 <template>
     <div id="tasks">
-        <p>This is my task list component</p>
+        
     </div>
 </template>
+
+
+<style lang="scss">
+  .task-card {
+      border: solid 1px grey;
+  }
+</style>
