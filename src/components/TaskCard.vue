@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :class="['task-card', {done: done}]">
+        <div :class="['task-card', {done}]">
             <div>
                 <h3>{{ title }}</h3>
                 <p>{{ description }}</p>

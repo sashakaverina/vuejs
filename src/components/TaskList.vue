@@ -1,13 +1,21 @@
 <template>
     <div id="tasks">
+        <button class="btn round-icon" @click="addTask('My new task', 'Desc')">+</button>
         <TaskCard 
-        :title="tasks[0].title"
-        :description="tasks[0].description"
-        :done="true"
+        v-for="(task, index) in tasks"
+        :key="index"
+        :title="task.title"
+        :description="task.description"
+        :done="task.done"
         >
 
         </TaskCard>
+
+        <p v-if="tasks.length === 0">You don't have any tasks yet</p>
     </div>
+
+
+    
 </template>
 
 <script>
@@ -19,29 +27,16 @@ export default {
 
   data() {
   return {
-    tasks: [
-      {
-        title: "Create a card component",
-        description:
-          "Create a new TaskCard.vue file in the components folder, then import it in TasksList",
-        done: true,
-      },
-      {
-        title: "Make the card component dynamic",
-        description:
-          "Learn about using the data option and passing data to child components using props",
-        done: true,
-      },
-      {
-        title: "Bind the attributes to the data",
-        description:
-          "Use the v-bind directive to bind the title and description to our data",
-        done: false,
-      },
-    ],
+    tasks: [],
   };
 },
-}
+
+methods: {
+    addTask(title, description, done = false){
+        this.tasks.unshift({title, description,done});
+    },
+  },
+};
 
 
 </script>
