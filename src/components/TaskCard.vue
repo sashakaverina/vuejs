@@ -1,11 +1,30 @@
 <template>
     <div>
-        <div class="task-card">
-            <h3>Title of my task</h3>
-            <p>Description of my task</p>
+        <div :class="['task-card', {done: done}]">
+            <div>
+                <h3>{{ title }}</h3>
+                <p>{{ description }}</p>
+            </div>
+            <div></div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  props: {
+         title: String,
+         description: String,
+         done: {type: Boolean, default: false},
+  },
+   data()
+ {
+     return {
+         
+    }
+ },
+}
+</script>
 
 <style lang="scss">
 .task-card {
