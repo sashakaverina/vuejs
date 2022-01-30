@@ -1,7 +1,10 @@
 <template>
     <div id="tasks">
         <button class="btn round-icon"
-        @click="newFormVisible = !newFormVisible">+</button>
+        @click="newFormVisible = !newFormVisible">
+        {{ newFormVisible ? "x" : "+" }}
+        
+        </button>
 
         <div v-if="newFormVisible" class="task-card new-task" @keyup.enter="addTask(newTitle, newDesc), resetForm()">
             <div>
@@ -42,11 +45,17 @@ export default {
 
   data() {
   return {
-    tasks: [],
+    tasks: JSON.parse(localStorage.getItem("tasks")) || [],
     newTitle: "",
     newDesc: "",
     newFormVisible: false,
   };
+},
+
+watch: {
+  tasks() {
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
+  },
 },
 
 methods: {
@@ -57,6 +66,11 @@ methods: {
         this.newTitle = "";
         this.newDesc = "";
     },
+    toggleTask(taskIndex) {
+    const taskToUpdate = this.tasks[taskIndex];
+    taskToUpdate.done = !taskToUpdate.done;
+    this.$set(this.tasks, taskIndex, taskToUpdate);
+  },
   },
 };
 

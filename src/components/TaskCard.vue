@@ -5,17 +5,26 @@
                 <h3>{{ title }}</h3>
                 <p>{{ description }}</p>
             </div>
-            <div></div>
+            <Checkbox @click.native="$emit('toggle-task', taskIndex)" :checked="done" />
         </div>
     </div>
 </template>
 
 <script>
+
+import Checkbox from "./Checkbox";
+
 export default {
+
+  components: {
+    Checkbox,
+  },
+  
   props: {
-         title: String,
-         description: String,
-         done: {type: Boolean, default: false},
+    title: String,
+    description: String,
+    done: Boolean,
+    taskIndex: Number,
   },
    data()
  {
